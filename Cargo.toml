@@ -1,0 +1,7 @@
+[package]
+name = "profont"
+version = "0.1.0"
+authors = ["Wesley Moore <wes@wezm.net>"]
+
+[dependencies]
+embedded-graphics = "0.4"
