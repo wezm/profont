@@ -14,7 +14,7 @@ impl FontBuilderConf for ProFont9PointConf {
     const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont9Point.raw");
     const CHAR_HEIGHT: u32 = 11;
     const CHAR_WIDTH: u32 = 6;
-    const FONT_IMAGE_WIDTH: u32 = 241;
+    const FONT_IMAGE_WIDTH: u32 = 240;
     fn char_offset(c: char) -> u32 {
         let fallback = '?' as u32 - ' ' as u32;
         if c < ' ' {
