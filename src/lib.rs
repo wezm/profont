@@ -9,6 +9,31 @@ use embedded_graphics::fonts::font_builder::{FontBuilder, FontBuilderConf};
 pub(crate) mod mock_display;
 
 #[derive(Debug, Copy, Clone)]
+pub enum ProFont7PointConf {}
+impl FontBuilderConf for ProFont7PointConf {
+    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont7Point.raw");
+    const CHAR_HEIGHT: u32 = 9;
+    const CHAR_WIDTH: u32 = 5;
+    const FONT_IMAGE_WIDTH: u32 = 200;
+    fn char_offset(c: char) -> u32 {
+        let fallback = '?' as u32 - ' ' as u32;
+        if c < ' ' {
+            return fallback;
+        }
+        if c <= '~' {
+            return c as u32 - ' ' as u32;
+        }
+        if c < '¡' || c > 'ÿ' {
+            return fallback;
+        }
+        c as u32 - ' ' as u32 - 34
+    }
+}
+
+/// The 7 point size.
+pub type ProFont7Point<'a, C> = FontBuilder<'a, C, ProFont7PointConf>;
+
+#[derive(Debug, Copy, Clone)]
 pub enum ProFont9PointConf {}
 impl FontBuilderConf for ProFont9PointConf {
     const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont9Point.raw");
@@ -32,6 +57,56 @@ impl FontBuilderConf for ProFont9PointConf {
 
 /// The 9 point size.
 pub type ProFont9Point<'a, C> = FontBuilder<'a, C, ProFont9PointConf>;
+
+#[derive(Debug, Copy, Clone)]
+pub enum ProFont18PointConf {}
+impl FontBuilderConf for ProFont18PointConf {
+    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont18Point.raw");
+    const CHAR_HEIGHT: u32 = 22;
+    const CHAR_WIDTH: u32 = 12;
+    const FONT_IMAGE_WIDTH: u32 = 480;
+    fn char_offset(c: char) -> u32 {
+        let fallback = '?' as u32 - ' ' as u32;
+        if c < ' ' {
+            return fallback;
+        }
+        if c <= '~' {
+            return c as u32 - ' ' as u32;
+        }
+        if c < '¡' || c > 'ÿ' {
+            return fallback;
+        }
+        c as u32 - ' ' as u32 - 34
+    }
+}
+
+/// The 18 point size.
+pub type ProFont18Point<'a, C> = FontBuilder<'a, C, ProFont18PointConf>;
+
+#[derive(Debug, Copy, Clone)]
+pub enum ProFont24PointConf {}
+impl FontBuilderConf for ProFont24PointConf {
+    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont24Point.raw");
+    const CHAR_HEIGHT: u32 = 29;
+    const CHAR_WIDTH: u32 = 16;
+    const FONT_IMAGE_WIDTH: u32 = 640;
+    fn char_offset(c: char) -> u32 {
+        let fallback = '?' as u32 - ' ' as u32;
+        if c < ' ' {
+            return fallback;
+        }
+        if c <= '~' {
+            return c as u32 - ' ' as u32;
+        }
+        if c < '¡' || c > 'ÿ' {
+            return fallback;
+        }
+        c as u32 - ' ' as u32 - 34
+    }
+}
+
+/// The 24 point size.
+pub type ProFont24Point<'a, C> = FontBuilder<'a, C, ProFont24PointConf>;
 
 #[cfg(test)]
 mod tests {
