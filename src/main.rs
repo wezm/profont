@@ -142,7 +142,7 @@ fn main() {
         }
     }
 
-    let filename = format!("data/ProFont{}Point.png", font_size);
+    let filename = format!("ProFont{}Point.png", font_size);
     imgbuf.save(&filename).expect("error saving PNG");
     println!("Wrote {} with character size of {}", filename, char_size);
 }

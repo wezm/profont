@@ -5,6 +5,8 @@ extern crate embedded_graphics;
 
 use embedded_graphics::fonts::font_builder::{FontBuilder, FontBuilderConf};
 
+const CHARS_PER_ROW: u32 = 32;
+
 #[cfg(test)]
 pub(crate) mod mock_display;
 
@@ -14,7 +16,7 @@ impl FontBuilderConf for ProFont7PointConf {
     const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont7Point.raw");
     const CHAR_HEIGHT: u32 = 9;
     const CHAR_WIDTH: u32 = 5;
-    const FONT_IMAGE_WIDTH: u32 = 200;
+    const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
         let fallback = '?' as u32 - ' ' as u32;
         if c < ' ' {
@@ -39,7 +41,7 @@ impl FontBuilderConf for ProFont9PointConf {
     const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont9Point.raw");
     const CHAR_HEIGHT: u32 = 11;
     const CHAR_WIDTH: u32 = 6;
-    const FONT_IMAGE_WIDTH: u32 = 240;
+    const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
         let fallback = '?' as u32 - ' ' as u32;
         if c < ' ' {
@@ -64,7 +66,7 @@ impl FontBuilderConf for ProFont18PointConf {
     const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont18Point.raw");
     const CHAR_HEIGHT: u32 = 22;
     const CHAR_WIDTH: u32 = 12;
-    const FONT_IMAGE_WIDTH: u32 = 480;
+    const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
         let fallback = '?' as u32 - ' ' as u32;
         if c < ' ' {
@@ -87,9 +89,9 @@ pub type ProFont18Point<'a, C> = FontBuilder<'a, C, ProFont18PointConf>;
 pub enum ProFont24PointConf {}
 impl FontBuilderConf for ProFont24PointConf {
     const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont24Point.raw");
-    const CHAR_HEIGHT: u32 = 29;
+    const CHAR_HEIGHT: u32 = 30;
     const CHAR_WIDTH: u32 = 16;
-    const FONT_IMAGE_WIDTH: u32 = 640;
+    const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
         let fallback = '?' as u32 - ' ' as u32;
         if c < ' ' {
