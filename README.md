@@ -1,7 +1,8 @@
 # ProFont
 
-[The ProFont programming font](https://web.archive.org/web/20180412214402/http://tobiasjung.name/profont/)
-for [embedded-graphics](https://github.com/jamwaffles/embedded-graphics).
+[The ProFont monospace font][profont] for use with the [embedded-graphics] crate.
+
+<img src="https://raw.githubusercontent.com/wezm/profont/master/IMG_2198.jpg" width="459" alt="Photo of ProFront on an ePaper display" />
 
 ## Specimens
 
@@ -34,3 +35,6 @@ ProFont is available in 7 sizes:
 ### 24 Point
 
 ![24 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/data/ProFont24Point.png)
+
+[embedded-graphics]: https://github.com/jamwaffles/embedded-graphics
+[profont]: https://web.archive.org/web/20180412214402/http://tobiasjung.name/profont/
