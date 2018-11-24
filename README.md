@@ -44,4 +44,4 @@ ProFont is available in 7 sizes:
 [embedded-graphics]: https://github.com/jamwaffles/embedded-graphics
 [profont]: https://web.archive.org/web/20180412214402/http://tobiasjung.name/profont/
 [MIT]: https://github.com/wezm/profont/blob/master/LICENSE
-[crate-docs]: https://docs.rs/crate/profont
+[crate-docs]: https://docs.rs/profont
