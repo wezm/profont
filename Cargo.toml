@@ -6,7 +6,10 @@ authors = ["Wesley Moore <wes@wezm.net>"]
 [dependencies]
 embedded-graphics = "0.4"
 
-# TODO: Make these optional behind feature
-font-kit = { version = "0.1", git = "https://github.com/pcwalton/font-kit.git" }
-euclid = "0.19"
-image = { version = "0.20", default-features = false, features = ["png_codec"] }
+font-kit = { version = "0.1", optional = true, git = "https://github.com/pcwalton/font-kit.git" }
+euclid = { version = "0.19", optional = true }
+image = { version = "0.20", optional = true, default-features = false, features = ["png_codec"] }
+
+[features]
+default-features = []
+exe = ["font-kit", "euclid", "image"]
