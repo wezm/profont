@@ -61,6 +61,81 @@ impl FontBuilderConf for ProFont9PointConf {
 pub type ProFont9Point<'a, C> = FontBuilder<'a, C, ProFont9PointConf>;
 
 #[derive(Debug, Copy, Clone)]
+pub enum ProFont10PointConf {}
+impl FontBuilderConf for ProFont10PointConf {
+    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont10Point.raw");
+    const CHAR_HEIGHT: u32 = 13;
+    const CHAR_WIDTH: u32 = 7;
+    const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
+    fn char_offset(c: char) -> u32 {
+        let fallback = '?' as u32 - ' ' as u32;
+        if c < ' ' {
+            return fallback;
+        }
+        if c <= '~' {
+            return c as u32 - ' ' as u32;
+        }
+        if c < '¡' || c > 'ÿ' {
+            return fallback;
+        }
+        c as u32 - ' ' as u32 - 34
+    }
+}
+
+/// The 10 point size.
+pub type ProFont10Point<'a, C> = FontBuilder<'a, C, ProFont10PointConf>;
+
+#[derive(Debug, Copy, Clone)]
+pub enum ProFont12PointConf {}
+impl FontBuilderConf for ProFont12PointConf {
+    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont12Point.raw");
+    const CHAR_HEIGHT: u32 = 15;
+    const CHAR_WIDTH: u32 = 8;
+    const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
+    fn char_offset(c: char) -> u32 {
+        let fallback = '?' as u32 - ' ' as u32;
+        if c < ' ' {
+            return fallback;
+        }
+        if c <= '~' {
+            return c as u32 - ' ' as u32;
+        }
+        if c < '¡' || c > 'ÿ' {
+            return fallback;
+        }
+        c as u32 - ' ' as u32 - 34
+    }
+}
+
+/// The 12 point size.
+pub type ProFont12Point<'a, C> = FontBuilder<'a, C, ProFont12PointConf>;
+
+#[derive(Debug, Copy, Clone)]
+pub enum ProFont14PointConf {}
+impl FontBuilderConf for ProFont14PointConf {
+    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont14Point.raw");
+    const CHAR_HEIGHT: u32 = 18;
+    const CHAR_WIDTH: u32 = 10;
+    const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
+    fn char_offset(c: char) -> u32 {
+        let fallback = '?' as u32 - ' ' as u32;
+        if c < ' ' {
+            return fallback;
+        }
+        if c <= '~' {
+            return c as u32 - ' ' as u32;
+        }
+        if c < '¡' || c > 'ÿ' {
+            return fallback;
+        }
+        c as u32 - ' ' as u32 - 34
+    }
+}
+
+/// The 14 point size.
+pub type ProFont14Point<'a, C> = FontBuilder<'a, C, ProFont14PointConf>;
+
+#[derive(Debug, Copy, Clone)]
 pub enum ProFont18PointConf {}
 impl FontBuilderConf for ProFont18PointConf {
     const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont18Point.raw");
