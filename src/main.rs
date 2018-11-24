@@ -26,6 +26,9 @@ fn main() {
         .parse()
         .expect("invalid font size");
 
+    let metrics = font.metrics();
+    let offset = (metrics.descent as f32 / metrics.units_per_em as f32 * font_size).round() as i32;
+
     // Print latin 1 characters
     let basic = (' ' as u32..='~' as u32)
         .into_iter()
@@ -82,7 +85,7 @@ fn main() {
     let row_size = 32;
     let img_size = Size2D::new(
         char_size.width * row_size,
-        (char_size.height as f64 * glyphs.len() as f64 / row_size as f64).ceil() as u32 +10,
+        (char_size.height as f64 * glyphs.len() as f64 / row_size as f64).ceil() as u32,
     );
     println!("img_size={}", img_size);
     // let img_size = Size2D::new(800, 480);
@@ -105,10 +108,10 @@ fn main() {
             let row = i as u32 / row_size;
             let img_x = col * char_size.width;
             let img_y = row * char_size.height + char_size.height;
-            println!(
-                "'{}' i={} row={} col={} x,y=({}, {}) raster_rect={}",
-                chr, i, row, col, img_x, img_y, glyph.raster_rect
-            );
+            // println!(
+            //     "'{}' i={} row={} col={} x,y=({}, {}) raster_rect={}",
+            //     chr, i, row, col, img_x, img_y, glyph.raster_rect
+            // );
             // Copy onto image
             for y in (0u32..glyph.raster_rect.size.height as u32)
                 .into_iter()
@@ -127,7 +130,7 @@ fn main() {
                         let pixel_x = img_x as i32 + x as i32 + glyph.raster_rect.origin.x;
                         let pixel_y = img_y as i32 - glyph.raster_rect.size.height + y as i32
                             - glyph.raster_rect.origin.y
-                            - 4;
+                            + offset;
                         if pixel_x >= 0 && pixel_y >= 0 {
                             imgbuf.put_pixel(pixel_x as u32, pixel_y as u32, Luma([0xFFu8]));
                         }
