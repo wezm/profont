@@ -10,6 +10,20 @@ const CHARS_PER_ROW: u32 = 32;
 #[cfg(test)]
 pub(crate) mod mock_display;
 
+fn char_offset_impl(c: char) -> u32 {
+    let fallback = '?' as u32 - ' ' as u32;
+    if c < ' ' {
+        return fallback;
+    }
+    if c <= '~' {
+        return c as u32 - ' ' as u32;
+    }
+    if c < '\u{00A0}' || c > 'ÿ' {
+        return fallback;
+    }
+    c as u32 - ' ' as u32 - 33
+}
+
 #[derive(Debug, Copy, Clone)]
 pub enum ProFont7PointConf {}
 impl FontBuilderConf for ProFont7PointConf {
@@ -18,17 +32,7 @@ impl FontBuilderConf for ProFont7PointConf {
     const CHAR_WIDTH: u32 = 5;
     const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
-        let fallback = '?' as u32 - ' ' as u32;
-        if c < ' ' {
-            return fallback;
-        }
-        if c <= '~' {
-            return c as u32 - ' ' as u32;
-        }
-        if c < '¡' || c > 'ÿ' {
-            return fallback;
-        }
-        c as u32 - ' ' as u32 - 34
+        char_offset_impl(c)
     }
 }
 
@@ -43,17 +47,7 @@ impl FontBuilderConf for ProFont9PointConf {
     const CHAR_WIDTH: u32 = 6;
     const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
-        let fallback = '?' as u32 - ' ' as u32;
-        if c < ' ' {
-            return fallback;
-        }
-        if c <= '~' {
-            return c as u32 - ' ' as u32;
-        }
-        if c < '¡' || c > 'ÿ' {
-            return fallback;
-        }
-        c as u32 - ' ' as u32 - 34
+        char_offset_impl(c)
     }
 }
 
@@ -68,17 +62,7 @@ impl FontBuilderConf for ProFont10PointConf {
     const CHAR_WIDTH: u32 = 7;
     const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
-        let fallback = '?' as u32 - ' ' as u32;
-        if c < ' ' {
-            return fallback;
-        }
-        if c <= '~' {
-            return c as u32 - ' ' as u32;
-        }
-        if c < '¡' || c > 'ÿ' {
-            return fallback;
-        }
-        c as u32 - ' ' as u32 - 34
+        char_offset_impl(c)
     }
 }
 
@@ -93,17 +77,7 @@ impl FontBuilderConf for ProFont12PointConf {
     const CHAR_WIDTH: u32 = 8;
     const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
-        let fallback = '?' as u32 - ' ' as u32;
-        if c < ' ' {
-            return fallback;
-        }
-        if c <= '~' {
-            return c as u32 - ' ' as u32;
-        }
-        if c < '¡' || c > 'ÿ' {
-            return fallback;
-        }
-        c as u32 - ' ' as u32 - 34
+        char_offset_impl(c)
     }
 }
 
@@ -118,17 +92,7 @@ impl FontBuilderConf for ProFont14PointConf {
     const CHAR_WIDTH: u32 = 10;
     const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
-        let fallback = '?' as u32 - ' ' as u32;
-        if c < ' ' {
-            return fallback;
-        }
-        if c <= '~' {
-            return c as u32 - ' ' as u32;
-        }
-        if c < '¡' || c > 'ÿ' {
-            return fallback;
-        }
-        c as u32 - ' ' as u32 - 34
+        char_offset_impl(c)
     }
 }
 
@@ -143,17 +107,7 @@ impl FontBuilderConf for ProFont18PointConf {
     const CHAR_WIDTH: u32 = 12;
     const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
-        let fallback = '?' as u32 - ' ' as u32;
-        if c < ' ' {
-            return fallback;
-        }
-        if c <= '~' {
-            return c as u32 - ' ' as u32;
-        }
-        if c < '¡' || c > 'ÿ' {
-            return fallback;
-        }
-        c as u32 - ' ' as u32 - 34
+        char_offset_impl(c)
     }
 }
 
@@ -168,17 +122,7 @@ impl FontBuilderConf for ProFont24PointConf {
     const CHAR_WIDTH: u32 = 16;
     const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
-        let fallback = '?' as u32 - ' ' as u32;
-        if c < ' ' {
-            return fallback;
-        }
-        if c <= '~' {
-            return c as u32 - ' ' as u32;
-        }
-        if c < '¡' || c > 'ÿ' {
-            return fallback;
-        }
-        c as u32 - ' ' as u32 - 34
+        char_offset_impl(c)
     }
 }
 
@@ -425,7 +369,7 @@ mod tests {
     fn correct_latin1() {
         let mut display = Display::default();
         display.draw(
-            ProFont9Point::render_str("¡ÿ")
+            ProFont9Point::render_str("\u{00A0}ÿ")
                 .with_stroke(Some(1u8.into()))
                 .into_iter(),
         );
