@@ -72,7 +72,6 @@ mod exe {
 
         // Work out how big the glyphs are
         let char_size = Size2D::new(
-            // 12, 22
             glyphs
                 .iter()
                 .map(|glyph| {
@@ -99,8 +98,6 @@ mod exe {
             char_size.width * row_size,
             (char_size.height as f64 * glyphs.len() as f64 / row_size as f64).ceil() as u32,
         );
-        println!("img_size={}", img_size);
-        // let img_size = Size2D::new(800, 480);
         let mut imgbuf = image::GrayImage::new(img_size.width, img_size.height);
 
         for (i, (_chr, glyph)) in all_chars.iter().zip(glyphs.iter()).enumerate() {
@@ -120,24 +117,17 @@ mod exe {
                 let row = i as u32 / row_size;
                 let img_x = col * char_size.width;
                 let img_y = row * char_size.height + char_size.height;
-                // println!(
-                //     "'{}' i={} row={} col={} x,y=({}, {}) raster_rect={}",
-                //     chr, i, row, col, img_x, img_y, glyph.raster_rect
-                // );
+
                 // Copy onto image
                 for y in (0u32..glyph.raster_rect.size.height as u32)
                     .into_iter()
                     .rev()
                 {
-                    let mut line = String::new();
-
                     let (row_start, row_end) =
                         (y as usize * canvas.stride, (y + 1) as usize * canvas.stride);
                     let row = &canvas.pixels[row_start..row_end];
                     for x in 0u32..glyph.raster_rect.size.width as u32 {
                         let val = row[x as usize];
-                        line.push(shade(val));
-                        line.push(shade(val));
                         if val != 0 {
                             let pixel_x = img_x as i32 + x as i32 + glyph.raster_rect.origin.x;
                             let pixel_y = img_y as i32 - glyph.raster_rect.size.height + y as i32
@@ -148,8 +138,6 @@ mod exe {
                             }
                         }
                     }
-
-                    // println!("{}", line);
                 }
             }
         }
@@ -157,16 +145,5 @@ mod exe {
         let filename = format!("ProFont{}Point.png", font_size);
         imgbuf.save(&filename).expect("error saving PNG");
         println!("Wrote {} with character size of {}", filename, char_size);
-
-    }
-
-    fn shade(value: u8) -> char {
-        match value {
-            0 => ' ',
-            1...84 => '░',
-            85...169 => '▒',
-            170...254 => '▓',
-            _ => '█',
-        }
     }
 }
