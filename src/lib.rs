@@ -8,7 +8,7 @@
 //! Assuming `display` is something that implements the [Drawing
 //! trait](https://docs.rs/embedded-graphics/0.4.4/embedded_graphics/trait.Drawing.html)
 //!
-//! ```no_run
+//! ```ignore
 //! display.draw(
 //!     ProFont24Point::render_str("Hello World")
 //!         .with_stroke(Some(Color::Red))
