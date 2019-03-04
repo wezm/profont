@@ -1,3 +1,5 @@
+#![no_std]
+
 //! The [ProFont](https://web.archive.org/web/20180412214402/http://tobiasjung.name/profont/)
 //! monospace programming font for use with
 //! [embedded-graphics](https://github.com/jamwaffles/embedded-graphics). Font data taken from the
