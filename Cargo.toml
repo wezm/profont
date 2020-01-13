@@ -14,12 +14,12 @@ keywords = ["bitmap", "monochrome", "font", "monospace"]
 categories = ["rendering", "embedded", "no-std"]
 
 [dependencies]
-embedded-graphics = "0.4"
+embedded-graphics = "0.5"
 
 font-kit = { version = "0.1", optional = true }
 euclid = { version = "0.19", optional = true }
 image = { version = "0.20", optional = true, default-features = false, features = ["png_codec"] }
 
 [features]
-default-features = []
+default = []
 exe = ["font-kit", "euclid", "image"]
