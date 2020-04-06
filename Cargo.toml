@@ -1,10 +1,10 @@
 [package]
 name = "profont"
 description = "The ProFont monospace font for use with the embedded-graphics crate."
-version = "0.3.0"
+version = "0.4.0"
 authors = ["Wesley Moore <wes@wezm.net>"]
 
-documentation = "https://docs.rs/crate/profont"
+documentation = "https://docs.rs/profont"
 repository = "https://github.com/wezm/profont"
 
 readme = "README.md"
