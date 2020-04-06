@@ -12,10 +12,13 @@
 //!
 //! ```ignore
 //! display.draw(
-//!     ProFont24Point::render_str("Hello World")
-//!         .with_stroke(Some(Color::Red))
-//!         .with_fill(Some(Color::White))
-//!         .translate(Coord::new(10, 10))
+//!     Text::new("Hello World")
+//!         into_styled(text_style!(
+//!             font = ProFont24Point,
+//!             text_color = Black,
+//!             background_color = White
+//!         ))
+//!         .translate(Point::new(10, 10))
 //!         .into_iter(),
 //! );
 //! ```
@@ -30,7 +33,7 @@
 
 extern crate embedded_graphics;
 
-use embedded_graphics::fonts::font_builder::{FontBuilder, FontBuilderConf};
+use embedded_graphics::{fonts::Font, geometry::Size};
 
 const CHARS_PER_ROW: u32 = 32;
 
@@ -48,107 +51,86 @@ fn char_offset_impl(c: char) -> u32 {
     c as u32 - ' ' as u32 - 33
 }
 
-#[derive(Debug, Copy, Clone)]
-pub enum ProFont7PointConf {}
-impl FontBuilderConf for ProFont7PointConf {
-    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont7Point.raw");
-    const CHAR_HEIGHT: u32 = 9;
-    const CHAR_WIDTH: u32 = 5;
-    const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
-    fn char_offset(c: char) -> u32 {
-        char_offset_impl(c)
-    }
-}
-
 /// The 7 point size with a character size of 5x9 pixels.
-pub type ProFont7Point<'a, C> = FontBuilder<'a, C, ProFont7PointConf>;
-
 #[derive(Debug, Copy, Clone)]
-pub enum ProFont9PointConf {}
-impl FontBuilderConf for ProFont9PointConf {
-    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont9Point.raw");
-    const CHAR_HEIGHT: u32 = 11;
-    const CHAR_WIDTH: u32 = 6;
-    const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
+pub struct ProFont7Point {}
+impl Font for ProFont7Point {
+    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont7Point.raw");
+    const CHARACTER_SIZE: Size = Size::new(5, 9);
+    const FONT_IMAGE_WIDTH: u32 = Self::CHARACTER_SIZE.width * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
         char_offset_impl(c)
     }
 }
 
 /// The 9 point size with a character size of 6x11 pixels.
-pub type ProFont9Point<'a, C> = FontBuilder<'a, C, ProFont9PointConf>;
-
 #[derive(Debug, Copy, Clone)]
-pub enum ProFont10PointConf {}
-impl FontBuilderConf for ProFont10PointConf {
-    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont10Point.raw");
-    const CHAR_HEIGHT: u32 = 13;
-    const CHAR_WIDTH: u32 = 7;
-    const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
+pub struct ProFont9Point;
+impl Font for ProFont9Point {
+    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont9Point.raw");
+    const CHARACTER_SIZE: Size = Size::new(6, 11);
+    const FONT_IMAGE_WIDTH: u32 = Self::CHARACTER_SIZE.width * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
         char_offset_impl(c)
     }
 }
 
 /// The 10 point size with a character size of 7x13 pixels.
-pub type ProFont10Point<'a, C> = FontBuilder<'a, C, ProFont10PointConf>;
-
 #[derive(Debug, Copy, Clone)]
-pub enum ProFont12PointConf {}
-impl FontBuilderConf for ProFont12PointConf {
-    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont12Point.raw");
-    const CHAR_HEIGHT: u32 = 15;
-    const CHAR_WIDTH: u32 = 8;
-    const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
+pub struct ProFont10Point;
+impl Font for ProFont10Point {
+    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont10Point.raw");
+    const CHARACTER_SIZE: Size = Size::new(7, 13);
+    const FONT_IMAGE_WIDTH: u32 = Self::CHARACTER_SIZE.width * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
         char_offset_impl(c)
     }
 }
 
 /// The 12 point size with a character size of 8x15 pixels.
-pub type ProFont12Point<'a, C> = FontBuilder<'a, C, ProFont12PointConf>;
-
 #[derive(Debug, Copy, Clone)]
-pub enum ProFont14PointConf {}
-impl FontBuilderConf for ProFont14PointConf {
-    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont14Point.raw");
-    const CHAR_HEIGHT: u32 = 18;
-    const CHAR_WIDTH: u32 = 10;
-    const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
+pub struct ProFont12Point;
+impl Font for ProFont12Point {
+    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont12Point.raw");
+    const CHARACTER_SIZE: Size = Size::new(8, 15);
+    const FONT_IMAGE_WIDTH: u32 = Self::CHARACTER_SIZE.width * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
         char_offset_impl(c)
     }
 }
 
 /// The 14 point size with a character size of 10x18 pixels.
-pub type ProFont14Point<'a, C> = FontBuilder<'a, C, ProFont14PointConf>;
-
 #[derive(Debug, Copy, Clone)]
-pub enum ProFont18PointConf {}
-impl FontBuilderConf for ProFont18PointConf {
-    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont18Point.raw");
-    const CHAR_HEIGHT: u32 = 22;
-    const CHAR_WIDTH: u32 = 12;
-    const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
+pub struct ProFont14Point;
+impl Font for ProFont14Point {
+    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont14Point.raw");
+    const CHARACTER_SIZE: Size = Size::new(10, 18);
+    const FONT_IMAGE_WIDTH: u32 = Self::CHARACTER_SIZE.width * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
         char_offset_impl(c)
     }
 }
 
 /// The 18 point size with a character size of 12x22 pixels.
-pub type ProFont18Point<'a, C> = FontBuilder<'a, C, ProFont18PointConf>;
-
 #[derive(Debug, Copy, Clone)]
-pub enum ProFont24PointConf {}
-impl FontBuilderConf for ProFont24PointConf {
-    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont24Point.raw");
-    const CHAR_HEIGHT: u32 = 30;
-    const CHAR_WIDTH: u32 = 16;
-    const FONT_IMAGE_WIDTH: u32 = Self::CHAR_WIDTH * CHARS_PER_ROW;
+pub struct ProFont18Point;
+impl Font for ProFont18Point {
+    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont18Point.raw");
+    const CHARACTER_SIZE: Size = Size::new(12, 22);
+    const FONT_IMAGE_WIDTH: u32 = Self::CHARACTER_SIZE.width * CHARS_PER_ROW;
     fn char_offset(c: char) -> u32 {
         char_offset_impl(c)
     }
 }
 
 /// The 24 point size with a character size of 16x30 pixels.
-pub type ProFont24Point<'a, C> = FontBuilder<'a, C, ProFont24PointConf>;
+#[derive(Debug, Copy, Clone)]
+pub struct ProFont24Point;
+impl Font for ProFont24Point {
+    const FONT_IMAGE: &'static [u8] = include_bytes!("../data/ProFont24Point.raw");
+    const CHARACTER_SIZE: Size = Size::new(16, 30);
+    const FONT_IMAGE_WIDTH: u32 = Self::CHARACTER_SIZE.width * CHARS_PER_ROW;
+    fn char_offset(c: char) -> u32 {
+        char_offset_impl(c)
+    }
+}
