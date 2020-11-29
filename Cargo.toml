@@ -16,10 +16,12 @@ categories = ["rendering", "embedded", "no-std"]
 [dependencies]
 embedded-graphics = "0.6"
 
-font-kit = { version = "0.1", optional = true }
+font-kit = { version = "0.10", optional = true }
 euclid = { version = "0.19", optional = true }
+clap = { version = "2.33.3", optional = true }
 image = { version = "0.20", optional = true, default-features = false, features = ["png_codec"] }
+pathfinder_geometry = { version = "0.5.1", optional = true }
 
 [features]
 default = []
-exe = ["font-kit", "euclid", "image"]
+exe = ["font-kit", "euclid", "clap", "image", "pathfinder_geometry" ]

@@ -3,14 +3,19 @@ RAW = ${PNG:.png=.raw}
 
 all: ${RAW}
 
+TTFFONT:=ProFontIIx.ttf
+FONTPREFIX:=ProFont
+
+CARGO_ARGS:=run --release --features=exe --  $(TTFFONT) $(FONTPREFIX)
+
 pngs:
-	cargo run --release -- 7
-	cargo run --release -- 9
-	cargo run --release -- 10
-	cargo run --release -- 12
-	cargo run --release -- 14
-	cargo run --release -- 18
-	cargo run --release -- 24
+	cargo  $(CARGO_ARGS) 7
+	cargo  $(CARGO_ARGS) 9
+	cargo  $(CARGO_ARGS) 10
+	cargo  $(CARGO_ARGS) 12
+	cargo  $(CARGO_ARGS) 14
+	cargo  $(CARGO_ARGS) 18
+	cargo  $(CARGO_ARGS) 24
 
 .SUFFIXES: .png .raw
 
