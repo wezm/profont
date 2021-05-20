@@ -3,6 +3,7 @@ name = "profont"
 description = "The ProFont monospace font for use with the embedded-graphics crate."
 version = "0.4.0"
 authors = ["Wesley Moore <wes@wezm.net>"]
+edition = "2018"
 
 documentation = "https://docs.rs/profont"
 repository = "https://github.com/wezm/profont"
@@ -14,8 +15,7 @@ keywords = ["bitmap", "monochrome", "font", "monospace"]
 categories = ["rendering", "embedded", "no-std"]
 
 [dependencies]
-embedded-graphics = "0.6"
-
+embedded-graphics = "0.7.0"
 font-kit = { version = "0.1", optional = true }
 euclid = { version = "0.19", optional = true }
 image = { version = "0.20", optional = true, default-features = false, features = ["png_codec"] }
@@ -23,3 +23,6 @@ image = { version = "0.20", optional = true, default-features = false, features 
 [features]
 default = []
 exe = ["font-kit", "euclid", "image"]
+
+[dev-dependencies]
+embedded-graphics-simulator = "0.3.0"
