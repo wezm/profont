@@ -1,49 +1,37 @@
-//! # Example: Custom font
-//!
-//! Shows how to implement a custom `SevenSegmentFont` font using the `MonoFontBuilder` struct. This
-//! font renders numbers only and emulates a classic 7 segment display.
+//! A simple hello world example using the 12pt Pro Font font.
 
 use embedded_graphics::{
-    image::ImageRaw,
-    mono_font::{MonoTextStyle, MonoTextStyleBuilder},
+    mono_font::MonoTextStyleBuilder,
     pixelcolor::BinaryColor,
     prelude::*,
-    text::{Alignment, Baseline, Text, TextStyle, TextStyleBuilder},
+    text::{Baseline, Text, TextStyle},
 };
-use embedded_graphics_simulator::{
-    BinaryColorTheme, OutputSettingsBuilder, SimulatorDisplay, Window,
-};
-use profont::PROFONT_7_POINT;
+use embedded_graphics_simulator::{OutputSettingsBuilder, SimulatorDisplay, Window};
+use profont::PROFONT_12_POINT;
 
 fn main() -> Result<(), core::convert::Infallible> {
     let mut display: SimulatorDisplay<BinaryColor> = SimulatorDisplay::new(Size::new(500, 128));
 
-    // let character_style = MonoTextStyle::new(&PROFONT_7_POINT, BinaryColor::On);
     let character_style = MonoTextStyleBuilder::new()
-        .font(&PROFONT_7_POINT)
-        .strikethrough()
-        .underline()
+        .font(&PROFONT_12_POINT)
+        // Uncomment to add strikethrough and/or underline
+        // .strikethrough()
+        // .underline()
         .text_color(BinaryColor::On)
         .build();
     let text_style = TextStyle::with_baseline(Baseline::Top);
 
-    let test_text  = "Hello world!\n¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ";
+    let test_text = "Hello world!";
 
-    Text::with_text_style(
-        // "123\n456\nÿ",
-        test_text,
-        // Point::new(10, 10),
-        Point::zero(),
-        character_style,
-        text_style,
-    )
-    .draw(&mut display)?;
+    Text::with_text_style(test_text, Point::zero(), character_style, text_style)
+        .draw(&mut display)?;
 
     let output_settings = OutputSettingsBuilder::new()
         // .theme(BinaryColorTheme::OledBlue)
         .scale(2)
         .build();
-    Window::new("Custom font", &output_settings).show_static(&display);
+
+    Window::new("Pro Font hello world", &output_settings).show_static(&display);
 
     Ok(())
 }
