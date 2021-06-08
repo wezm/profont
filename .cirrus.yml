@@ -1,0 +1,17 @@
+task:
+  name: Build (Alpine Linux)
+  container:
+    image: alpine:3.13
+    cpu: 8
+  environment:
+    RUSTFLAGS: "-C target-feature=-crt-static"
+    PATH: "$HOME/.cargo/bin:$PATH"
+  install_script:
+    - apk add --update curl git gcc musl-dev sdl2-dev
+    - curl https://sh.rustup.rs -sSf | sh -s -- -y --profile minimal --default-toolchain 1.52.1
+    - rustup component add rustfmt
+    - rustup target add thumbv7em-none-eabihf
+  test_script:
+    - cargo fmt -- --check
+    - cargo test --features embedded-graphics-simulator
+    - cargo build --lib --target thumbv7em-none-eabihf
