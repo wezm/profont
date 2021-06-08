@@ -41,6 +41,14 @@ ProFont is available in 7 sizes:
 
 ![24 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/data/ProFont24Point.png)
 
+## Examples
+
+There are some examples that use the `embedded-graphics` simulator. Run these as follows:
+
+    cargo run --example --features embedded-graphics-simulator debugger
+    cargo run --example --features embedded-graphics-simulator mock-display
+    cargo run --example --features embedded-graphics-simulator hello
+
 [embedded-graphics]: https://github.com/jamwaffles/embedded-graphics
 [profont]: https://web.archive.org/web/20180412214402/http://tobiasjung.name/profont/
 [MIT]: https://github.com/wezm/profont/blob/master/LICENSE
