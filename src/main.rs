@@ -1,5 +1,5 @@
 #[cfg(feature = "exe")]
-fn main () {
+fn main() {
     exe::main();
 }
 
@@ -39,7 +39,8 @@ mod exe {
             .expect("invalid font size");
 
         let metrics = font.metrics();
-        let offset = (metrics.descent as f32 / metrics.units_per_em as f32 * font_size).round() as i32;
+        let offset =
+            (metrics.descent as f32 / metrics.units_per_em as f32 * font_size).round() as i32;
 
         // Print latin 1 characters
         let basic = (' ' as u32..='~' as u32)
@@ -62,13 +63,15 @@ mod exe {
                             &Point2D::zero(),
                             HintingOptions::None,
                             RasterizationOptions::Bilevel,
-                        ).expect("unable to get raster bounds");
+                        )
+                        .expect("unable to get raster bounds");
                     Glyph {
                         id: glyph_id,
                         raster_rect,
                     }
                 })
-            }).collect();
+            })
+            .collect();
 
         // Work out how big the glyphs are
         let char_size = Size2D::new(
@@ -79,7 +82,8 @@ mod exe {
                         .as_ref()
                         .map(|glyph| glyph.raster_rect.size.width)
                         .unwrap_or(0)
-                }).max()
+                })
+                .max()
                 .unwrap(),
             glyphs
                 .iter()
@@ -88,9 +92,11 @@ mod exe {
                         .as_ref()
                         .map(|glyph| glyph.raster_rect.size.height)
                         .unwrap_or(0)
-                }).max()
+                })
+                .max()
                 .unwrap(),
-        ).to_u32();
+        )
+        .to_u32();
 
         // Render the glyphs
         let row_size = 32;
@@ -111,7 +117,8 @@ mod exe {
                     &glyph.raster_rect.origin.to_f32(),
                     HintingOptions::None,
                     RasterizationOptions::Bilevel,
-                ).expect("error rasterizing glyph");
+                )
+                .expect("error rasterizing glyph");
 
                 let col = i as u32 % row_size;
                 let row = i as u32 / row_size;
