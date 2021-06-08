@@ -2,6 +2,7 @@
 
 [The ProFont monospace font][profont] for use with the [embedded-graphics] crate.
 
+[![Build Status](https://api.cirrus-ci.com/github/wezm/profont.svg)](https://cirrus-ci.com/github/wezm/profont)
 [![crates.io](https://img.shields.io/crates/v/profont.svg)](https://crates.io/crates/profont)
 [![Documentation](https://docs.rs/profont/badge.svg)][crate-docs]
 
