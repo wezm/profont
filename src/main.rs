@@ -126,10 +126,7 @@ mod exe {
                 let img_y = row * char_size.height + char_size.height;
 
                 // Copy onto image
-                for y in (0u32..char_size.height as u32)
-                    .into_iter()
-                    .rev()
-                {
+                for y in (0u32..char_size.height as u32).into_iter().rev() {
                     let (row_start, row_end) =
                         (y as usize * canvas.stride, (y + 1) as usize * canvas.stride);
                     let row = &canvas.pixels[row_start..row_end];
