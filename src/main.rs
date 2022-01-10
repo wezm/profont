@@ -108,7 +108,7 @@ mod exe {
 
         for (i, (_chr, glyph)) in all_chars.iter().zip(glyphs.iter()).enumerate() {
             if let Some(glyph) = glyph {
-                let mut canvas = Canvas::new(&glyph.raster_rect.size.to_u32(), Format::A8);
+                let mut canvas = Canvas::new(&char_size.to_u32(), Format::A8);
 
                 font.rasterize_glyph(
                     &mut canvas,
@@ -126,14 +126,14 @@ mod exe {
                 let img_y = row * char_size.height + char_size.height;
 
                 // Copy onto image
-                for y in (0u32..glyph.raster_rect.size.height as u32)
+                for y in (0u32..char_size.height as u32)
                     .into_iter()
                     .rev()
                 {
                     let (row_start, row_end) =
                         (y as usize * canvas.stride, (y + 1) as usize * canvas.stride);
                     let row = &canvas.pixels[row_start..row_end];
-                    for x in 0u32..glyph.raster_rect.size.width as u32 {
+                    for x in 0u32..char_size.width as u32 {
                         let val = row[x as usize];
                         if val != 0 {
                             let pixel_x = img_x as i32 + x as i32 + glyph.raster_rect.origin.x;
