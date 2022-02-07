@@ -8,17 +8,82 @@ use embedded_graphics::{
     text::{Text, TextStyle},
 };
 use embedded_graphics_simulator::{OutputSettingsBuilder, SimulatorDisplay, Window};
+use pico_args::Arguments;
 use profont::*;
 
-fn main() -> Result<(), core::convert::Infallible> {
+struct Args {
+    show_help: bool,
+    strikethrough: bool,
+    underline: bool,
+    gui_scale: u32,
+}
+
+const HELP_MESSAGE: &str = "\
+Profont debugger. Renders all characters in all sizes for debugging purposes.
+
+USAGE:
+    debugger [OPTIONS]
+
+FLAGS:
+  -h, --help            Prints help information
+
+OPTIONS:
+  -s, --strikethrough   Enables strikethrough style
+  -u, --underline       Enables underline style
+  --no-gui-scaling      Disable GUI scaling by factor 2
+";
+
+fn parse_args() -> Result<Args, pico_args::Error> {
+    let mut args = Arguments::from_env();
+
+    let show_help = args.contains(["-h", "--help"]);
+    let strikethrough = args.contains(["-s", "--strikethrough"]);
+    let underline = args.contains(["-u", "--underline"]);
+    let no_gui_scaling = args.contains("--no-gui-scaling");
+
+    if args.finish().is_empty() {
+        Ok(Args {
+            show_help,
+            strikethrough,
+            underline,
+            gui_scale: if no_gui_scaling { 1 } else { 2 },
+        })
+    } else {
+        Err(pico_args::Error::ArgumentParsingFailed {
+            cause: "Unknown arguments. Use '--help' for help on usage.".to_string(),
+        })
+    }
+}
+
+fn base_character_style_builder(args: &Args) -> MonoTextStyleBuilder<Rgb888> {
+    let mut style = MonoTextStyleBuilder::new().text_color(Rgb888::WHITE);
+
+    if args.strikethrough {
+        style = style.strikethrough_with_color(Rgb888::CSS_TOMATO);
+    }
+    if args.underline {
+        style = style.underline_with_color(Rgb888::CSS_CORNFLOWER_BLUE);
+    }
+
+    style
+}
+
+fn main() -> Result<(), std::convert::Infallible> {
+    let args = match parse_args() {
+        Ok(args) => args,
+        Err(e) => {
+            eprintln!("{}", e);
+            std::process::exit(1);
+        }
+    };
+
+    if args.show_help {
+        println!("{}", HELP_MESSAGE);
+        return Ok(());
+    }
+
     let mut display: SimulatorDisplay<Rgb888> = SimulatorDisplay::new(Size::new(1000, 500));
-
-    let character_style = MonoTextStyleBuilder::new()
-        // Uncomment to add strikethrough and/or underline to all sizes.
-        // .strikethrough_with_color(Rgb888::CSS_TOMATO)
-        // .underline_with_color(Rgb888::CSS_CORNFLOWER_BLUE)
-        .text_color(Rgb888::WHITE);
-
+    let character_style = base_character_style_builder(&args);
     let text_style = TextStyle::default();
 
     let sizes = [
@@ -52,7 +117,7 @@ fn main() -> Result<(), core::convert::Infallible> {
         position += size.character_size.y_axis() * test_text.lines().count() as u32;
     }
 
-    let output_settings = OutputSettingsBuilder::new().scale(2).build();
+    let output_settings = OutputSettingsBuilder::new().scale(args.gui_scale).build();
     Window::new("Pro Font debugger", &output_settings).show_static(&display);
 
     Ok(())
