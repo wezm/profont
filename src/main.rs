@@ -150,8 +150,10 @@ mod exe {
         let filename = format!("ProFont{}Point.png", font_size);
         imgbuf.save(&filename)?;
         println!(
-            "Wrote {} with character size of {}",
-            filename, metrics.advance
+            "Wrote {} with character size of {}x{}",
+            filename,
+            metrics.advance,
+            metrics.ascender - metrics.descender
         );
 
         Ok(())

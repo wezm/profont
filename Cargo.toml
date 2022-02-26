@@ -17,7 +17,6 @@ categories = ["rendering", "embedded", "no-std"]
 [dependencies]
 anyhow = { version = "1.0", optional = true }
 embedded-graphics = "0.7.0"
-embedded-graphics-simulator = { version = "0.3.0", optional = true }
 image = { version = "0.24", optional = true, default-features = false, features = ["png"] }
 num-iter = { version = "0.1.42", optional = true }
 
@@ -25,6 +24,9 @@ num-iter = { version = "0.1.42", optional = true }
 version = "0.7"
 optional = true
 path = "../../Work/allsorts"
+
+[dev-dependencies]
+embedded-graphics-simulator = { version = "0.3.0" }
 
 [features]
 default = []

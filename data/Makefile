@@ -5,7 +5,7 @@
 PNG!= find . -type f -name '*.png'
 RAW = ${PNG:.png=.raw}
 
-all: ${RAW}
+all: ${RAW} ../src/main.rs
 
 pngs:
 	cargo build --release --features exe
