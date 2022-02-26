@@ -16,7 +16,7 @@ mod exe {
     use allsorts::binary::read::ReadScope;
     use allsorts::bitmap::cbdt::CBLCTable;
     use allsorts::bitmap::{BitDepth, Bitmap, BitmapGlyph, BitmapMetrics, Metrics};
-    use allsorts::font::MatchingPresentation;
+    use allsorts::font::{GlyphTableFlags, MatchingPresentation};
     use allsorts::tables::FontTableProvider;
     use allsorts::tables::OpenTypeFont;
     use allsorts::{tag, Font};
@@ -67,6 +67,7 @@ mod exe {
 
         let mut font = Font::new(table_provider)?
             .ok_or_else(|| anyhow!("Unable to find suitable cmap table for character mapping"))?;
+        font.set_embedded_image_filter(GlyphTableFlags::EBDT);
 
         // Print latin 1 characters
         let basic = (' ' as u32..='~' as u32)

@@ -24,6 +24,8 @@ num-iter = { version = "0.1.42", optional = true }
 version = "0.7"
 optional = true
 path = "../../Work/allsorts"
+default-features = false
+features = ["flate2_rust"]
 
 [dev-dependencies]
 embedded-graphics-simulator = { version = "0.3.0" }
