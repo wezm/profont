@@ -46,11 +46,18 @@ ProFont is available in 7 sizes:
 
 There are some examples that use the `embedded-graphics` simulator. Run these as follows:
 
-    cargo run --features embedded-graphics-simulator --example debugger
-    cargo run --features embedded-graphics-simulator --example mock-display
-    cargo run --features embedded-graphics-simulator --example hello
+    cargo run --features examples --example debugger
+    cargo run --features examples --example mock-display
+    cargo run --features examples --example hello
+
+## Data Files
+
+The binary of the crate is used to generate the data files from a source font. They can be regenerated with:
+
+    bmake -C data pngs
+    bamke -C data
 
 [embedded-graphics]: https://github.com/jamwaffles/embedded-graphics
-[profont]: https://web.archive.org/web/20180412214402/http://tobiasjung.name/profont/
+[profont]: https://tobiasjung.name/profont/
 [MIT]: https://github.com/wezm/profont/blob/master/LICENSE
 [crate-docs]: https://docs.rs/profont
