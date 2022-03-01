@@ -144,7 +144,7 @@ mod exe {
             };
 
             // eprintln!("Got bitmap for '{}': {:?}", ch, glyph_image.metrics);
-            add_to_sprite_sheet(i, ch, &metrics, &glyph_image, &mut imgbuf)?;
+            add_to_sprite_sheet(i, &metrics, &glyph_image, &mut imgbuf)?;
         }
 
         // Write out the PNG
@@ -162,7 +162,6 @@ mod exe {
 
     fn add_to_sprite_sheet(
         char_index: usize,
-        ch: char,
         base_metrics: &BitmapMetrics,
         glyph_image: &BitmapGlyph,
         imgbuf: &mut GrayImage,
