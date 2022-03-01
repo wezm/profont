@@ -1,35 +1,5 @@
-[package]
-name = "profont"
-description = "The ProFont monospace font for use with the embedded-graphics crate."
-version = "0.5.0"
-authors = ["Wesley Moore <wes@wezm.net>"]
-edition = "2018"
-
-documentation = "https://docs.rs/profont"
-repository = "https://github.com/wezm/profont"
-
-readme = "README.md"
-license = "MIT"
-
-keywords = ["bitmap", "monochrome", "font", "monospace"]
-categories = ["rendering", "embedded", "no-std"]
-
-[dependencies]
-anyhow = { version = "1.0", optional = true }
-embedded-graphics = "0.7.0"
-image = { version = "0.24", optional = true, default-features = false, features = ["png"] }
-num-iter = { version = "0.1.42", optional = true }
-embedded-graphics-simulator = { version = "0.3.0", optional = true }
-
-[dependencies.allsorts]
-version = "0.8"
-optional = true
-default-features = false
-features = ["flate2_rust"]
-
-[dev-dependencies]
-pico-args = { version = "0.4.2" }
-
-[features]
-exe = ["allsorts", "anyhow", "image", "num-iter"]
-examples = ["embedded-graphics-simulator"]
+[workspace]
+members = [
+  "font",
+  "tools",
+]

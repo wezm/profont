@@ -7,7 +7,7 @@
 //!
 //! # Examples
 //!
-//! Draw the text "Hello world" to a mock display using the 7pt Pro Font font.
+//! Draw the text "Hello world" to a mock display using the 7pt ProFont font.
 //!
 //! ```rust
 //! use embedded_graphics::{
