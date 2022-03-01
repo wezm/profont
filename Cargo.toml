@@ -21,9 +21,8 @@ image = { version = "0.24", optional = true, default-features = false, features 
 num-iter = { version = "0.1.42", optional = true }
 
 [dependencies.allsorts]
-version = "0.7"
+version = "0.8"
 optional = true
-path = "../../Work/allsorts"
 default-features = false
 features = ["flate2_rust"]
 
