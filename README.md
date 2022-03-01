@@ -6,7 +6,7 @@
 [![crates.io](https://img.shields.io/crates/v/profont.svg)](https://crates.io/crates/profont)
 [![Documentation](https://docs.rs/profont/badge.svg)][crate-docs]
 
-<img src="https://raw.githubusercontent.com/wezm/profont/master/data/IMG_2198.jpg" width="459" alt="Photo of ProFront on an ePaper display" />
+<img src="https://raw.githubusercontent.com/wezm/profont/master/tools/data/IMG_2198.jpg" width="459" alt="Photo of ProFront on an ePaper display" />
 
 `profont` is licensed under the [MIT license][MIT].
 
