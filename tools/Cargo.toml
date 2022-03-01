@@ -1,0 +1,25 @@
+[package]
+name = "profont-tools"
+version = "0.1.0"
+edition = "2018"
+publish = false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = { version = "1.0" }
+image = { version = "0.24",  default-features = false, features = ["png"] }
+num-iter = { version = "0.1.42" }
+embedded-graphics = "0.7.0"
+embedded-graphics-simulator = { version = "0.3.0" }
+pico-args = { version = "0.4.2" }
+profont = { path = "../font" }
+
+[dependencies.allsorts]
+version = "0.8"
+default-features = false
+features = ["flate2_rust"]
+
+[[bin]]
+name = "profont"
+path = "src/main.rs"

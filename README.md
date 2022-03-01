@@ -16,48 +16,47 @@ ProFont is available in 7 sizes:
 
 ### 7 Point
 
-![7 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/data/ProFont7Point.png)
+![7 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/tools/data/ProFont7Point.png)
 
 ### 9 Point
 
-![9 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/data/ProFont9Point.png)
+![9 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/tools/data/ProFont9Point.png)
 
 ### 10 Point
 
-![10 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/data/ProFont10Point.png)
+![10 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/tools/data/ProFont10Point.png)
 
 ### 12 Point
 
-![12 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/data/ProFont12Point.png)
+![12 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/tools/data/ProFont12Point.png)
 
 ### 14 Point
 
-![14 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/data/ProFont14Point.png)
+![14 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/tools/data/ProFont14Point.png)
 
 ### 18 Point
 
-![18 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/data/ProFont18Point.png)
+![18 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/tools/data/ProFont18Point.png)
 
 ### 24 Point
 
-![24 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/data/ProFont24Point.png)
+![24 Point ProFont](https://raw.githubusercontent.com/wezm/profont/master/tools/data/ProFont24Point.png)
 
 ## Examples
 
 There are some examples that use the `embedded-graphics` simulator. Run these as follows:
 
-    cargo run --features examples --example debugger
-    cargo run --features examples --example mock-display
-    cargo run --features examples --example hello
+    cargo run debugger
+    cargo run mock-display
+    cargo run hello
 
 ## Data Files
 
 The binary of the crate is used to generate the data files from a source font. They can be regenerated with:
 
-    bmake -C data pngs
-    bamke -C data
+    bmake -C data pngs all
 
-[embedded-graphics]: https://github.com/jamwaffles/embedded-graphics
+[embedded-graphics]: https://github.com/embedded-graphics/embedded-graphics
 [profont]: https://tobiasjung.name/profont/
 [MIT]: https://github.com/wezm/profont/blob/master/LICENSE
 [crate-docs]: https://docs.rs/profont

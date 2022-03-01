@@ -4,7 +4,6 @@ task:
     image: alpine:3.13
     cpu: 8
   environment:
-    RUSTFLAGS: "-C target-feature=-crt-static"
     PATH: "$HOME/.cargo/bin:$PATH"
   install_script:
     - apk add --update curl git gcc musl-dev sdl2-dev
@@ -13,5 +12,5 @@ task:
     - rustup target add thumbv7em-none-eabihf
   test_script:
     - cargo fmt -- --check
-    - cargo test --features examples
-    - cargo build --lib --target thumbv7em-none-eabihf
+    - cargo test
+    - cargo build --package profont --target thumbv7em-none-eabihf
