@@ -27,6 +27,8 @@ optional = true
 default-features = false
 features = ["flate2_rust"]
 
+[dev-dependencies]
+pico-args = { version = "0.4.2" }
 
 [features]
 exe = ["allsorts", "anyhow", "image", "num-iter"]
