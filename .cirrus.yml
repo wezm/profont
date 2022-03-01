@@ -13,5 +13,5 @@ task:
     - rustup target add thumbv7em-none-eabihf
   test_script:
     - cargo fmt -- --check
-    - cargo test
+    - cargo test --features examples
     - cargo build --lib --target thumbv7em-none-eabihf
