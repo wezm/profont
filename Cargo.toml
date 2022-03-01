@@ -19,6 +19,7 @@ anyhow = { version = "1.0", optional = true }
 embedded-graphics = "0.7.0"
 image = { version = "0.24", optional = true, default-features = false, features = ["png"] }
 num-iter = { version = "0.1.42", optional = true }
+embedded-graphics-simulator = { version = "0.3.0", optional = true }
 
 [dependencies.allsorts]
 version = "0.8"
@@ -26,9 +27,7 @@ optional = true
 default-features = false
 features = ["flate2_rust"]
 
-[dev-dependencies]
-embedded-graphics-simulator = { version = "0.3.0" }
 
 [features]
-default = []
 exe = ["allsorts", "anyhow", "image", "num-iter"]
+examples = ["embedded-graphics-simulator"]
