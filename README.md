@@ -46,9 +46,9 @@ ProFont is available in 7 sizes:
 
 There are some examples that use the `embedded-graphics` simulator. Run these as follows:
 
-    cargo run --features embedded-graphics-simulator --example debugger
-    cargo run --features embedded-graphics-simulator --example mock-display
-    cargo run --features embedded-graphics-simulator --example hello
+    cargo run --features examples --example debugger
+    cargo run --features examples --example mock-display
+    cargo run --features examples --example hello
 
 ## Data Files
 
