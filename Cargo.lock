@@ -613,7 +613,7 @@ dependencies = [
 
 [[package]]
 name = "profont"
-version = "0.6.0"
+version = "0.6.1"
 dependencies = [
  "embedded-graphics",
 ]
