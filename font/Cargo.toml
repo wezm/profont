@@ -15,4 +15,4 @@ keywords = ["bitmap", "monochrome", "font", "monospace"]
 categories = ["rendering", "embedded", "no-std"]
 
 [dependencies]
-embedded-graphics = "0.7.0"
+embedded-graphics = "0.8.0"
