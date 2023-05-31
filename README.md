@@ -52,9 +52,10 @@ There are some examples that use the `embedded-graphics` simulator. Run these as
 
 ## Data Files
 
-The binary of the crate is used to generate the data files from a source font. They can be regenerated with:
+The binary of the crate is used to generate the data files from a source font.
+They can be regenerated with:
 
-    bmake -C data pngs all
+    bmake -C tools/data pngs all
 
 [embedded-graphics]: https://github.com/embedded-graphics/embedded-graphics
 [profont]: https://tobiasjung.name/profont/
