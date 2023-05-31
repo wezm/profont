@@ -10,13 +10,14 @@ publish = false
 anyhow = { version = "1.0" }
 image = { version = "0.24",  default-features = false, features = ["png"] }
 num-iter = { version = "0.1.42" }
-embedded-graphics = "0.7.0"
-embedded-graphics-simulator = { version = "0.3.0" }
-pico-args = { version = "0.4.2" }
+embedded-graphics = "0.8.0"
+embedded-graphics-simulator = { version = "0.5.0" }
+pico-args = { version = "0.5.0" }
 profont = { path = "../font" }
 
 [dependencies.allsorts]
-version = "0.8"
+# 0.13.0 bumps MSRV beyond the MSRV of embedded-graphics (1.61.0)
+version = "<0.13.0"
 default-features = false
 features = ["flate2_rust"]
 

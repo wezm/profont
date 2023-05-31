@@ -53,105 +53,105 @@ const GLYPH_MAPPING: StrGlyphMapping =
 
 /// The 7 point size with a character size of 5x10 pixels.
 pub const PROFONT_7_POINT: MonoFont = MonoFont {
-    image: ImageRaw::new_binary(
+    image: ImageRaw::new(
         include_bytes!("../data/ProFont7Point.raw"),
         CHARS_PER_ROW * 5,
     ),
 
-    glyph_mapping: &GLYPH_MAPPING,
     character_size: Size::new(5, 10),
     character_spacing: 0,
     baseline: 7,
     underline: DecorationDimensions::new(8, 1),
     strikethrough: DecorationDimensions::new(6, 1),
+    glyph_mapping: &GLYPH_MAPPING,
 };
 
 /// The 9 point size with a character size of 6x11 pixels.
 pub const PROFONT_9_POINT: MonoFont = MonoFont {
-    image: ImageRaw::new_binary(
+    image: ImageRaw::new(
         include_bytes!("../data/ProFont9Point.raw"),
         CHARS_PER_ROW * 6,
     ),
 
-    glyph_mapping: &GLYPH_MAPPING,
     character_size: Size::new(6, 11),
     character_spacing: 0,
     baseline: 8,
     underline: DecorationDimensions::new(10, 1),
     strikethrough: DecorationDimensions::new(6, 1),
+    glyph_mapping: &GLYPH_MAPPING,
 };
 
 /// The 10 point size with a character size of 6x12 pixels.
 pub const PROFONT_10_POINT: MonoFont = MonoFont {
-    image: ImageRaw::new_binary(
+    image: ImageRaw::new(
         include_bytes!("../data/ProFont10Point.raw"),
         CHARS_PER_ROW * 6,
     ),
 
-    glyph_mapping: &GLYPH_MAPPING,
     character_size: Size::new(6, 12),
     character_spacing: 1,
     baseline: 9,
     underline: DecorationDimensions::new(10 + 1, 1),
     strikethrough: DecorationDimensions::new(7, 1),
+    glyph_mapping: &GLYPH_MAPPING,
 };
 
 /// The 12 point size with a character size of 7x15 pixels.
 pub const PROFONT_12_POINT: MonoFont = MonoFont {
-    image: ImageRaw::new_binary(
+    image: ImageRaw::new(
         include_bytes!("../data/ProFont12Point.raw"),
         CHARS_PER_ROW * 7,
     ),
 
-    glyph_mapping: &GLYPH_MAPPING,
     character_size: Size::new(7, 15),
     character_spacing: 1,
     baseline: 11,
     underline: DecorationDimensions::new(13, 1),
     strikethrough: DecorationDimensions::new(8, 1),
+    glyph_mapping: &GLYPH_MAPPING,
 };
 
 /// The 14 point size with a character size of 10x17 pixels.
 pub const PROFONT_14_POINT: MonoFont = MonoFont {
-    image: ImageRaw::new_binary(
+    image: ImageRaw::new(
         include_bytes!("../data/ProFont14Point.raw"),
         CHARS_PER_ROW * 10,
     ),
 
-    glyph_mapping: &GLYPH_MAPPING,
     character_size: Size::new(10, 17),
     character_spacing: 0,
     baseline: 13,
     underline: DecorationDimensions::new(15, 1),
     strikethrough: DecorationDimensions::new(9, 2),
+    glyph_mapping: &GLYPH_MAPPING,
 };
 
 /// The 18 point size with a character size of 12x22 pixels.
 pub const PROFONT_18_POINT: MonoFont = MonoFont {
-    image: ImageRaw::new_binary(
+    image: ImageRaw::new(
         include_bytes!("../data/ProFont18Point.raw"),
         CHARS_PER_ROW * 12,
     ),
 
-    glyph_mapping: &GLYPH_MAPPING,
     character_size: Size::new(12, 22),
     character_spacing: 0,
     baseline: 17,
     underline: DecorationDimensions::new(19, 2),
     strikethrough: DecorationDimensions::new(12, 2),
+    glyph_mapping: &GLYPH_MAPPING,
 };
 
 /// The 24 point size with a character size of 16x29 pixels.
 pub const PROFONT_24_POINT: MonoFont = MonoFont {
-    image: ImageRaw::new_binary(
+    image: ImageRaw::new(
         include_bytes!("../data/ProFont24Point.raw"),
         CHARS_PER_ROW * 16,
     ),
 
-    glyph_mapping: &GLYPH_MAPPING,
     character_size: Size::new(16, 29),
     character_spacing: 0,
     baseline: 24,
     underline: DecorationDimensions::new(26, 2),
     strikethrough: DecorationDimensions::new(16, 2),
+    glyph_mapping: &GLYPH_MAPPING,
 };
